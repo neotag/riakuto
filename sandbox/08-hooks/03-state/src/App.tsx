@@ -1,25 +1,19 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button, Card, Statistic } from 'semantic-ui-react';
 
 import './App.css';
 
 const App: FC = () => {
-  const count = 0;
-  const increment = () => {};
-  const decrement = () => {};
+  const [count, setCount] = useState(0);
 
-  //  increment() {
-  //  this.setState(prevState => ({
-  //    count: prevState.count + 1,
-  //  }));
-  //  }
+  const increment = () => {
+    setCount(count + 1);
+  };
 
-  //  decrement() {
-  //  this.setState(prevState => ({
-  //    count: prevState.count - 1,
-  //  }));
-  //  }
+  const decrement = () => {
+    setCount(count - 1);
+  };
 
   return (
     <div className="container">
