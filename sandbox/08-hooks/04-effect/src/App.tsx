@@ -1,32 +1,21 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Button, Card, Icon, Statistic } from 'semantic-ui-react';
 
 import './App.css';
 
 const App: FC = () => {
   const LIMIT = 60;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [timeLeft, setTimeLeft] = useState(LIMIT);
+  const reset = () => setTimeLeft(LIMIT);
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const reset = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  const tick = () => {};
+  useEffect(() => {
+    const tick = () => {
+      setTimeLeft(prevTime => (prevTime === 0 ? LIMIT : prevTime - 1));
+    };
+    const timerId = setInterval(tick, 1000);
 
-  // componentDidMount = () => {
-  //   this.timerId = setInterval(this.tick, 1000);
-  // };
-
-  // componentDidUpdate = () => {
-  //   const { timeLeft } = this.state;
-  //   if (timeLeft === 0) {
-  //     this.reset();
-  //   }
-  // };
-
-  // componentWillUnmount = () => {
-  //   clearInterval(this.timerId as NodeJS.Timer);
-  // };
+    return () => clearInterval(timerId);
+  });
 
   return (
     <div className="container">
