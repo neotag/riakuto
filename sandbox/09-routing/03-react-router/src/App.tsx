@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
-import CharacterList, { Character } from './CharacterList';
+import React, { useEffect, FC } from 'react';
+import { Redirect, Route, Switch } from 'react-router';
+// import CharacterList, { Character } from './CharacterList';
+import Home from './components/Home';
+import Temp from './components/Temp';
+import Hoge from './components/Temp/hoge';
 
 import './App.css';
 
 import { schoolData } from './data';
 
-const App = () => {
+const App: FC<{}> = () => {
   useEffect(() => {
     // eslint-disable-next-line no-console
     console.dir(schoolData);
@@ -13,13 +17,12 @@ const App = () => {
 
   return (
     <div className="container">
-      <header>
-        <h1>はねバド！ キャラクター一覧</h1>
-      </header>
-      <CharacterList
-        school="北小町高校"
-        characters={schoolData.kitakomachi.students}
-      />
+      <Switch>
+        <Route path="/hoge" component={Hoge} />
+        <Route path="/temp/:code" component={Temp} />
+        <Route path="/" component={Home} />
+        <Redirect to="/" />
+      </Switch>
     </div>
   );
 };
