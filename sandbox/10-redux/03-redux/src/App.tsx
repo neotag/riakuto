@@ -1,41 +1,24 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { FC, useState } from 'react';
 import { Button, Card, Statistic } from 'semantic-ui-react';
+import Counter from './components/Counter';
+import ColorfulBeads from './components/ColorfulBeads';
 
 import './App.css';
 
+const CounterTempProps = {
+  count: 0,
+  increment: () => {},
+  decrement: () => {},
+};
+
 const App: FC = () => {
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    setCount(count - 1);
-  };
+  const { count, increment, decrement } = CounterTempProps;
 
   return (
-    <div className="container">
-      <header>
-        <h1>カウンター</h1>
-      </header>
-      <Card>
-        <Statistic className="number-board">
-          <Statistic.Label>count</Statistic.Label>
-          <Statistic.Value>{count}</Statistic.Value>
-        </Statistic>
-        <Card.Content>
-          <div className="ui two buttons">
-            <Button color="red" onClick={decrement}>
-              -1
-            </Button>
-            <Button color="green" onClick={increment}>
-              +1
-            </Button>
-          </div>
-        </Card.Content>
-      </Card>
+    <div>
+      <Counter count={count} increment={increment} decrement={decrement} />
+      <ColorfulBeads />
     </div>
   );
 };
